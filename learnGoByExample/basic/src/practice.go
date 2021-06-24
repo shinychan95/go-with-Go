@@ -5,7 +5,7 @@ import "fmt"
 func main() {
 	println("Hello World")
 
-	// 1. Variable
+	/* 1. Variable */
 	var i, j, k int = 1, 2, 3 // mismatch 주의
 	var tmp int               // 기본값은 0
 	v := 999                  // 타입 추론 및 func 내 var 생략
@@ -16,7 +16,7 @@ func main() {
 	println(tmp)
 	println(v)
 
-	// 2. Constant
+	/* 2. Constant */
 	const (
 		Visa   = "Visa"
 		Master = "MasterCard"
@@ -32,18 +32,16 @@ func main() {
 	println(Visa)
 	println(Apple)
 
-	// 3. Data Type
-	/*
-		bool
-		string (immutable)
-		int, int8, int16, int 64
-		uint uint8 uint16 uint32 uint64 uintptr
-		float32 float64 complex64 complex128
-		byte: uint8과 동일하며 바이트 코드에 사용
-		rune: int32과 동일하며 유니코드 코드포인트에 사용한다
-	*/
+	/* 3. Data Type */
+	// bool
+	// string (immutable)
+	// int, int8, int16, int 64
+	// uint uint8 uint16 uint32 uint64 uintptr
+	// float32 float64 complex64 complex128
+	// byte: uint8과 동일하며 바이트 코드에 사용
+	// rune: int32과 동일하며 유니코드 코드포인트에 사용한다
 
-	// 4. String
+	/* 4. String */
 	// Raw String Literal. 복수라인에 주로 사용된다.
 	rawLiteral := `아리랑\n
 아리랑\n
@@ -59,7 +57,7 @@ func main() {
 	fmt.Println()
 	fmt.Println(interLiteral)
 
-	// 5. Type Conversion
+	/* 5. Type Conversion */
 	var x5 int = 100
 	var y5 uint = uint(x5)
 	var z5 float32 = float32(y5)
@@ -70,14 +68,14 @@ func main() {
 	strCovt := string(bytes)
 	println(bytes, strCovt)
 
-	// 6. Operator
+	/* 6. Operator */
 	// Pointer op
 	var k6 int = 10
 	var ptr = &k6 //k의 주소를 할당
 	println(ptr)
 	println(*ptr) //p가 가리키는 주소에 있는 실제 내용을 출력
 
-	// 7. if statement
+	/* 7. if statement */
 	i7 := 2
 	if i7 == 1 { //같은 라인
 		println("One")
@@ -93,7 +91,7 @@ func main() {
 		println(v7)
 	}
 
-	// 8. Switch statement
+	/* 8. Switch statement */
 	var name string
 	var category = 2
 
@@ -136,4 +134,42 @@ func main() {
 	}
 
 	explain(name)
+
+	/* 9. for loop statement */
+	sum := 0
+	for i := 1; i <= 100; i++ { // 괄호 ()를 쓰면 에러가 발생한다.
+		sum += i
+	}
+	println(sum)
+
+	i9 := 1
+	for i9 < 100 { // 조건만 작성하여 while처럼 사용할 수 있다.
+		i9 *= 2
+		//if i9 > 90 {
+		//   break
+		//}
+	}
+	println(i9)
+
+	// 무한 루프는 조건 없이 for만 적는다.
+	// for {
+	//     println("Infinite loop")
+	// }
+
+	// for range 문이 가능하다
+	names := []string{"홍길동", "이순신", "강감찬"}
+
+	for index, name := range names {
+		println(index, name)
+	}
+
+	// 그 외에 break, continue, goto 문이 사용된다.
+
+	/* */
+
+	/* */
+
+	/* */
+
+	/* */
 }
