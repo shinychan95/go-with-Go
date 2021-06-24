@@ -1,5 +1,9 @@
 package main
 
+import (
+	"fmt"
+)
+
 func main() {
 	/* 1. Function */
 	msg := "Hello World"
@@ -37,7 +41,88 @@ func main() {
 	println(anotherNext()) // 2
 
 	/* 7. Go Collection - Array */
+	var arr1 [3]int
+	arr1[0] = 1
+	arr1[1] = 2
+	arr1[2] = 3
+	println(arr1[2])
 
+	var arr2 = [3]int{1, 2, 3}
+	var arr3 = [...]int{4, 5, 6}
+	fmt.Println(arr2)
+	fmt.Println(arr3[2])
+
+	var a = [2][3]int{
+		{1, 2, 3},
+		{4, 5, 6}, //끝에 콤마 추가
+	}
+	println(a[1][2])
+
+	/* 7. Go Collection - Slice */
+	// Go 배열은 크기를 동적으로 증가시키거나 부분 배열을 발췌하는 등의 기능이 없다.
+	// Go Slice는 내부적으로 배열에 기초하여 만들어졌지만,
+	// 이런 제약점들을 넘어 편리하고 유용한 기능을 제공한다.
+
+	var s1 []int // 슬라이스 변수 선언 (크기를 지정하지 않는다)
+	s1 = []int{1, 2, 3}
+	s1[1] = 10
+	fmt.Println(s1)
+
+	// make를 활용하여 슬라이스 생성
+	s2 := make([]int, 5, 10) // Slice type, Length, Capacity
+	println(len(s2), cap(s2))
+
+	// 부분 슬라이스
+	s3 := []int{0, 1, 2, 3, 4, 5}
+	s3 = s3[2:5]    // 2, 3, 4
+	s3 = s3[1:]     // 3, 4
+	fmt.Println(s3) // 3, 4 출력
+
+	// 슬라이스 병합과 복사
+	s4 := []int{0, 1}
+
+	// 하나 확장
+	s4 = append(s4, 2) // 0, 1, 2
+	// 복수 요소들 확장
+	s4 = append(s4, 3, 4, 5) // 0,1,2,3,4,5
+
+	fmt.Println(s4)
+
+	/* 8. Go Collection - Map */
+	tickers := map[string]string{
+		"GOOG": "Google Inc",
+		"MSFT": "Microsoft",
+		"FB":   "Facebook",
+	}
+
+	println(tickers["GOOG"])
+
+	// 추가 혹은 갱신
+	tickers["NV"] = "NAVER"
+	tickers["FB"] = "FaceBook"
+
+	fmt.Println(tickers)
+
+	noData := tickers["KKO"] // 값이 없으면 nil 혹은 zero 리턴
+	println(noData)
+
+	// 삭제
+	delete(tickers, "FB")
+	fmt.Println(tickers)
+
+	// map 키 체크
+	val, exists := tickers["MSFTS"]
+	if !exists {
+		println("No MSFT ticker")
+	} else {
+		fmt.Printf("Value is %s", val)
+	}
+
+	// for range 문을 사용하여 모든 맵 요소 출력
+	// Map은 unordered 이므로 순서는 무작위
+	for key, val := range tickers {
+		fmt.Println(key, val)
+	}
 }
 
 // Pass By Value
