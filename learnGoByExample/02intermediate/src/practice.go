@@ -4,6 +4,21 @@ import (
 	"fmt"
 )
 
+/* 익명 함수 관련 내용 추가 */
+// 함수 원형 정의
+type calculatorNum func(int, int) int
+type calculatorStr func(string, string) string
+
+func calNum(f calculatorNum, a int, b int) int {
+	result := f(a, b)
+	return result
+}
+
+func calStr(f calculatorStr, a string, b string) string {
+	sentence := f(a, b)
+	return sentence
+}
+
 func main() {
 	/* 1. Function */
 	msg := "Hello World"
@@ -28,6 +43,19 @@ func main() {
 	// '변수명(파라미터들)' 형태로 사용된다.
 	// 일급 함수 -> 기본 타입과 동일하게 취급 -> 함수의 파라미터 전달 혹은 리턴값으로 사용된다.
 	// type문을 사용한 함수 원형 정의
+
+	multi := func(i int, j int) int {
+		return i * j
+	}
+	duple := func(i string, j string) string {
+		return i + j + i + j
+	}
+
+	r1 := calNum(multi, 10, 20)
+	fmt.Println(r1)
+
+	r2 := calStr(duple, "Hello", " Golang ")
+	fmt.Println(r2)
 
 	/* 6. Closure */
 	next := nextValue()
